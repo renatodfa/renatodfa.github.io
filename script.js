@@ -12,7 +12,7 @@
   const blocks = [...document.querySelectorAll('.reveal')];
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
+      entries.forEach((entry, index) => {
         if (!entry.isIntersecting) return;
         observer.unobserve(entry.target);
         if (entry.target.contains(document.activeElement)) return;
@@ -21,10 +21,33 @@
         animate(entry.target, [
           {opacity: 0, transform: `translate3d(${x}px,16px,0)`},
           {opacity: 1, transform: 'translate3d(0,0,0)'}
-        ], {duration: 800, easing: 'cubic-bezier(.16,1,.3,1)'});
+        ], {duration: 950, delay: Math.min(index * 65, 195), fill: 'backwards', easing: 'cubic-bezier(.16,1,.3,1)'});
       });
     }, {threshold: .08, rootMargin: '0px 0px -25px 0px'});
     blocks.forEach(block => observer.observe(block));
+    const photoObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        photoObserver.unobserve(entry.target);
+        animate(entry.target, [
+          {clipPath: 'inset(0 100% 0 0)'},
+          {clipPath: 'inset(0 0 0 0)'}
+        ], {duration: 1100, easing: 'cubic-bezier(.16,1,.3,1)'});
+      });
+    }, {threshold:.12});
+    document.querySelectorAll('.cover').forEach(el => photoObserver.observe(el));
+    const navLinks = [...document.querySelectorAll('.site-header nav a')];
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(link => {
+          if (link.hash === '#' + entry.target.id) link.setAttribute('aria-current','location');
+          else link.removeAttribute('aria-current');
+        });
+      });
+    }, {rootMargin:'-15% 0px -60% 0px'});
+    document.querySelectorAll('main > section[id]').forEach(el => sectionObserver.observe(el));
+
   }
   document.querySelectorAll('.name-line').forEach((line, i) => {
     animate(line, [
@@ -57,6 +80,7 @@
   function selectFilter(value, button) {
     filterButtons.forEach(b => { const selected = b.dataset.filter === value; b.classList.toggle('active', selected); b.setAttribute('aria-pressed', String(selected)); });
     groups.forEach(group => { group.hidden = value !== 'all' && group.dataset.group !== value; });
+    groups.filter(group => !group.hidden).forEach(group => animate(group, [{opacity:.3, transform:'translateY(12px)'}, {opacity:1,transform:'translateY(0)'}], {duration:450,easing:'ease-out'}));
     status.textContent = value === 'all' ? 'Exibindo todos os trabalhos.' : `Exibindo trabalhos de ${button.textContent.trim()}.`;
     updateScroll();
   }
