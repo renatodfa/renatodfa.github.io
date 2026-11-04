@@ -47,3 +47,28 @@
 .site-header nav a[aria-current="location"]:after{transform:scaleX(1)}
 @media(max-width:700px){.lab-single .lab-slot{grid-template-columns:45px 1fr;padding:22px 18px;gap:18px}.lab-single .slot-number{font-size:65px}.lab-single .lab-slot h3{font-size:21px}.lab-single .lab-slot p{font-size:13px}.lab-single .lab-slot:after{display:none}.cover img.article-photo{aspect-ratio:4/3}}
 @media(prefers-reduced-motion:reduce){.cover-link:hover img,.cover-link:hover .cover-action,.academic-row:hover .circle-arrow{transform:none}}
+
+/* Quem sou eu: retrato editorial */
+.about-section>.about-heading{display:block;margin-bottom:28px}
+.portrait-panel{display:grid;grid-template-columns:1fr 1.25fr;background:#050706;color:#f2f0e9;isolation:isolate;overflow:hidden}
+.portrait-figure{margin:0;position:relative;min-width:0;background:#000;display:flex;flex-direction:column;justify-content:center}
+.portrait-figure img{width:100%;height:auto;aspect-ratio:1;object-fit:contain}
+.portrait-figure:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 82%,#050706),linear-gradient(0deg,#050706,transparent 26%)}
+.portrait-figure figcaption{position:absolute;bottom:30px;left:30px;right:25px;z-index:1;font-size:10px;letter-spacing:2px;color:#e1e5db}
+.portrait-figure figcaption span{display:block;font-size:8px;color:#9aa991;margin-top:7px;letter-spacing:1.4px}
+.portrait-copy{padding:55px 48px 50px 35px;align-self:center}
+.portrait-copy>.kicker{color:#acb8a0;font-size:9px;letter-spacing:2px}
+.portrait-copy h2{font:500 clamp(44px,4.8vw,68px)/1.03 var(--display);letter-spacing:-3px;margin:25px 0}
+.portrait-copy h2 em{font-family:var(--serif);font-weight:400;color:#b9c7a9}
+.portrait-copy p:not(.kicker){font-size:14px;line-height:1.75;color:#b9c0b7;margin:0 0 17px}
+.portrait-copy p.portrait-lead{font-size:17px;line-height:1.6;color:#eceee7}
+.portrait-tags{display:flex;flex-wrap:wrap;gap:7px;margin:23px 0 28px}
+.portrait-tags span{border:1px solid #394237;border-radius:30px;padding:5px 10px;font-size:10px;color:#c3cdbb}
+.portrait-copy .text-link{font-size:12px;border-color:#7d8f70}
+.trajectory-title{font:500 35px/1.1 var(--display);letter-spacing:-1.5px;margin:20px 0}
+.trajectory-title em{font:italic 400 1em var(--serif)}
+@media(max-width:1000px){.portrait-panel{grid-template-columns:1fr 1.2fr}.portrait-copy{padding:35px 28px 35px 20px}.portrait-copy p:not(.kicker){font-size:13px}.portrait-copy p.portrait-lead{font-size:15px}}
+@media(max-width:700px){.portrait-panel{grid-template-columns:1fr}.portrait-figure{max-height:none}.portrait-figure img{width:100%;max-width:400px;margin:auto}.portrait-figure:after{background:linear-gradient(0deg,#050706,transparent 30%)}.portrait-figure figcaption{bottom:20px;left:25px}.portrait-copy{padding:28px 25px 35px}.portrait-copy h2{font-size:49px;margin:20px 0}.portrait-copy p:not(.kicker){font-size:14px}.portrait-copy p.portrait-lead{font-size:16px}.trajectory-title{font-size:32px}}
+@media print{.portrait-panel{background:#fff;color:#18211c}.portrait-copy p:not(.kicker),.portrait-copy p.portrait-lead{color:#18211c}.portrait-copy{padding:20px}.portrait-figure:after{display:none}.portrait-figure figcaption{display:none}}
+
+.portrait-quote{border-left:2px solid #92a57e;padding-left:18px;margin:25px 0;font:400 21px/1.4 var(--serif);color:#e4e9dc}.portrait-quote em{color:#b9c7a9}.portrait-copy{padding-top:42px;padding-bottom:42px}
