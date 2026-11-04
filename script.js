@@ -61,6 +61,9 @@
   function updateScroll() {
     scheduled = false;
     const max = document.documentElement.scrollHeight - innerHeight;
+    const opening = document.querySelector('.intro-scene');
+    const passage = document.querySelector('.color-passage');
+    if (opening && passage) document.querySelector('.site-header').classList.toggle('header-light', passage.getBoundingClientRect().bottom < 140);
     progress.style.transform = `scaleX(${max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0})`;
     track.style.transform = reduced.matches ? 'translateX(-35px)' : `translateX(${-35 - Math.min(scrollY, 1600) * .09}px)`;
   }
